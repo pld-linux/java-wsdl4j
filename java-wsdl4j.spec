@@ -1,14 +1,15 @@
 Summary:	Web Services Description Language Toolkit for Java
+Summary(pl):	Jêzyk opisu us³ug WWW dla Javy
 Name:		wsdl4j
 Version:	1.5.1
 Release:	0.1
 License:	IBM Common Public License
 Group:		Applications/Text
-URL:		http://sourceforge.net/projects/wsdl4j
-Source0:	%{name}-%{version}-src.tar.gz
-# Source0-md5:	ba2b623dadab131fff061410e8047eb7
 ##cvs -d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/wsdl4j login
 ##cvs -z3 -d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/wsdl4j export -r wsdl4j-1_5_1 wsdl4j
+Source0:	%{name}-%{version}-src.tar.gz
+# Source0-md5:	ba2b623dadab131fff061410e8047eb7
+URL:		http://sourceforge.net/projects/wsdl4j/
 BuildRequires:	jakarta-ant
 BuildRequires:	jdk
 BuildRequires:	junit
@@ -23,12 +24,22 @@ the creation, representation, and manipulation of WSDL documents
 describing services. This codebase will eventually serve as a
 reference implementation of the standard created by JSR110.
 
+%description -l pl
+Pakiet WSDL4J (Web Services Description Language for Java - jêzyk
+opisu us³ug WWW dla Javy) pozwala na tworzenie, reprezentowanie i
+obróbkê dokumentów WSDL opisuj±cych us³ugi. Ta podstawa kodu mo¿e
+s³u¿yæ za wzorcow± implementacjê standardu stworzonego przez JSR110.
+
 %package javadoc
 Summary:	Javadoc for %{name}
+Summary(pl):	Dokumentacja javadoc dla pakietu %{name}
 Group:		Documentation
 
 %description javadoc
 Javadoc for %{name}.
+
+%description javadoc -l pl
+Dokumentacja javadoc dla pakietu %{name}.
 
 %prep
 %setup -q
@@ -54,7 +65,7 @@ done
 
 # javadoc
 install -d $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
-cp -pr build/javadocs/* $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}/
+cp -pr build/javadocs/* $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
 
 %clean
 rm -rf $RPM_BUILD_ROOT

@@ -10,7 +10,7 @@ Group:		Applications/Text
 Source0:	%{name}-%{version}-src.tar.gz
 # Source0-md5:	ba2b623dadab131fff061410e8047eb7
 URL:		http://sourceforge.net/projects/wsdl4j/
-BuildRequires:	jakarta-ant
+BuildRequires:	ant
 BuildRequires:	jdk
 BuildRequires:	junit
 Requires:	java

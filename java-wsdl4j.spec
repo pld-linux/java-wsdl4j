@@ -1,5 +1,5 @@
 Summary:	Web Services Description Language Toolkit for Java
-Summary(pl.UTF-8):   Język opisu usług WWW dla Javy
+Summary(pl.UTF-8):	Język opisu usług WWW dla Javy
 Name:		wsdl4j
 Version:	1.5.1
 Release:	0.1
@@ -32,7 +32,7 @@ służyć za wzorcową implementację standardu stworzonego przez JSR110.
 
 %package javadoc
 Summary:	Javadoc for %{name}
-Summary(pl.UTF-8):   Dokumentacja javadoc dla pakietu %{name}
+Summary(pl.UTF-8):	Dokumentacja javadoc dla pakietu %{name}
 Group:		Documentation
 
 %description javadoc

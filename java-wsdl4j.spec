@@ -1,5 +1,5 @@
 Summary:	Web Services Description Language Toolkit for Java
-Summary(pl):	Jêzyk opisu us³ug WWW dla Javy
+Summary(pl.UTF-8):   JÄ™zyk opisu usÅ‚ug WWW dla Javy
 Name:		wsdl4j
 Version:	1.5.1
 Release:	0.1
@@ -24,21 +24,21 @@ the creation, representation, and manipulation of WSDL documents
 describing services. This codebase will eventually serve as a
 reference implementation of the standard created by JSR110.
 
-%description -l pl
-Pakiet WSDL4J (Web Services Description Language for Java - jêzyk
-opisu us³ug WWW dla Javy) pozwala na tworzenie, reprezentowanie i
-obróbkê dokumentów WSDL opisuj±cych us³ugi. Ta podstawa kodu mo¿e
-s³u¿yæ za wzorcow± implementacjê standardu stworzonego przez JSR110.
+%description -l pl.UTF-8
+Pakiet WSDL4J (Web Services Description Language for Java - jÄ™zyk
+opisu usÅ‚ug WWW dla Javy) pozwala na tworzenie, reprezentowanie i
+obrÃ³bkÄ™ dokumentÃ³w WSDL opisujÄ…cych usÅ‚ugi. Ta podstawa kodu moÅ¼e
+sÅ‚uÅ¼yÄ‡ za wzorcowÄ… implementacjÄ™ standardu stworzonego przez JSR110.
 
 %package javadoc
 Summary:	Javadoc for %{name}
-Summary(pl):	Dokumentacja javadoc dla pakietu %{name}
+Summary(pl.UTF-8):   Dokumentacja javadoc dla pakietu %{name}
 Group:		Documentation
 
 %description javadoc
 Javadoc for %{name}.
 
-%description javadoc -l pl
+%description javadoc -l pl.UTF-8
 Dokumentacja javadoc dla pakietu %{name}.
 
 %prep

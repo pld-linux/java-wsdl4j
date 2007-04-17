@@ -63,8 +63,8 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_javadir}
 cp -a build/lib/qname.jar $RPM_BUILD_ROOT%{_javadir}/qname-%{version}.jar
 cp -a build/lib/wsdl4j.jar $RPM_BUILD_ROOT%{_javadir}/wsdl4j-%{version}.jar
-ln -s qname-%{version} $RPM_BUILD_ROOT%{_javadir}/qname.jar
-ln -s wsdl4j-%{version} $RPM_BUILD_ROOT%{_javadir}/wsdl4j.jar
+ln -s qname-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/qname.jar
+ln -s wsdl4j-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/wsdl4j.jar
 
 # javadoc
 install -d $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}

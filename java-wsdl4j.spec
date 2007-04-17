@@ -1,3 +1,4 @@
+%include	/usr/lib/rpm/macros.java
 Summary:	Web Services Description Language Toolkit for Java
 Summary(pl.UTF-8):	Język opisu usług WWW dla Javy
 Name:		wsdl4j
@@ -11,8 +12,12 @@ Source0:	%{name}-%{version}-src.tar.gz
 # Source0-md5:	ba2b623dadab131fff061410e8047eb7
 URL:		http://sourceforge.net/projects/wsdl4j/
 BuildRequires:	ant
+BuildRequires:	ant-junit
 BuildRequires:	jdk
+BuildRequires:	jpackage-utils
 BuildRequires:	junit
+BuildRequires:	rpm-javaprov
+BuildRequires:	rpmbuild(macros) >= 1.300
 Requires:	java
 Requires:	jaxp_parser_impl
 BuildArch:	noarch
@@ -34,6 +39,7 @@ służyć za wzorcową implementację standardu stworzonego przez JSR110.
 Summary:	Javadoc for %{name}
 Summary(pl.UTF-8):	Dokumentacja javadoc dla pakietu %{name}
 Group:		Documentation
+Requires:	jpackage-utils
 
 %description javadoc
 Javadoc for %{name}.
@@ -45,44 +51,36 @@ Dokumentacja javadoc dla pakietu %{name}.
 %setup -q
 
 %build
-export OPT_JAR_LIST="ant/ant-junit junit"
-[ -z "$JAVA_HOME" ] && export JAVA_HOME=%{_jvmdir}/java
-#ant -Dbuild.compiler=modern compile
-#ant -Dbuild.compiler=modern javadocs
-ant -Dbuild.compiler=modern compile test javadocs
+required_jars="junit"
+export CLASSPATH=$(build-classpath $required_jars)
+%ant compile test javadocs \
+	-Dbuild.compiler=modern
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
 # jars
 install -d $RPM_BUILD_ROOT%{_javadir}
-
-for jar in %{name}.jar qname.jar ; do
-	vjar=$(echo $jar | sed s+.jar+-%{version}.jar+g)
-	install -m 644 build/lib/$jar $RPM_BUILD_ROOT%{_javadir}/$vjar
-	ln -fs $vjar $RPM_BUILD_ROOT%{_javadir}$jar
-done
+cp -a build/lib/qname.jar $RPM_BUILD_ROOT%{_javadir}/qname-%{version}.jar
+cp -a build/lib/wsdl4j.jar $RPM_BUILD_ROOT%{_javadir}/wsdl4j-%{version}.jar
+ln -s qname-%{version} $RPM_BUILD_ROOT%{_javadir}/qname.jar
+ln -s wsdl4j-%{version} $RPM_BUILD_ROOT%{_javadir}/wsdl4j.jar
 
 # javadoc
 install -d $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
-cp -pr build/javadocs/* $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
+cp -a build/javadocs/* $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
+ln -s %{name}-%{version} $RPM_BUILD_ROOT%{_javadocdir}/%{name} # ghost symlink
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post javadoc
-rm -f %{_javadocdir}/%{name}
-ln -s %{name}-%{version} %{_javadocdir}/%{name}
-
-%postun javadoc
-if [ "$1" = "0" ]; then
-	rm -f %{_javadocdir}/%{name}
-fi
+ln -sf %{name}-%{version} %{_javadocdir}/%{name}
 
 %files
 %defattr(644,root,root,755)
 %doc license.html
-%{_javadir}/*
+%{_javadir}/*.jar
 
 %files javadoc
 %defattr(644,root,root,755)

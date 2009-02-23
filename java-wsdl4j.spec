@@ -1,9 +1,11 @@
+%bcond_without  javadoc         # don't build javadoc
+
 %include	/usr/lib/rpm/macros.java
 Summary:	Web Services Description Language Toolkit for Java
 Summary(pl.UTF-8):	Język opisu usług WWW dla Javy
 Name:		wsdl4j
 Version:	1.5.1
-Release:	0.1
+Release:	1
 License:	IBM Common Public License
 Group:		Applications/Text
 ##cvs -d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/wsdl4j login
@@ -13,12 +15,11 @@ Source0:	%{name}-%{version}-src.tar.gz
 URL:		http://sourceforge.net/projects/wsdl4j/
 BuildRequires:	ant
 BuildRequires:	ant-junit
-BuildRequires:	jdk
+BuildRequires:	java-gcj-compat-devel
 BuildRequires:	jpackage-utils
 BuildRequires:	junit
 BuildRequires:	rpm-javaprov
 BuildRequires:	rpmbuild(macros) >= 1.300
-Requires:	java
 Requires:	jaxp_parser_impl
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -52,9 +53,15 @@ Dokumentacja javadoc dla pakietu %{name}.
 
 %build
 required_jars="junit"
-export CLASSPATH=$(build-classpath $required_jars)
-%ant compile test javadocs \
-	-Dbuild.compiler=modern
+CLASSPATH=$(build-classpath $required_jars)
+export CLASSPATH
+
+%ant -Dbuild.compiler=extJavac compile test
+
+%if %{with javadoc}
+export SHELL=/bin/sh
+%ant javadocs
+%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -82,6 +89,9 @@ ln -sf %{name}-%{version} %{_javadocdir}/%{name}
 %doc license.html
 %{_javadir}/*.jar
 
+%if %{with javadoc}
 %files javadoc
 %defattr(644,root,root,755)
 %{_javadocdir}/%{name}-%{version}
+%ghost %{_javadocdir}/%{name}
+%endif

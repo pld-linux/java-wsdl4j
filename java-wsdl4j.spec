@@ -1,5 +1,5 @@
 %bcond_without  javadoc         # don't build javadoc
-$bcond_with	java_sun	# use java-sun
+%bcond_with	java_sun	# use java-sun
 
 %include	/usr/lib/rpm/macros.java
 

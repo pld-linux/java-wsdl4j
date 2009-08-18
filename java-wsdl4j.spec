@@ -37,6 +37,8 @@ BuildRequires:	rpm-javaprov
 BuildRequires:	rpmbuild(macros) >= 1.300
 BuildRequires:	rpmbuild(macros) >= 1.300
 Requires:	jaxp_parser_impl
+Provides:	java(JSR109)
+Provides:	java(JSR110)
 Provides:	wsdl4j
 Obsoletes:	wsdl4j
 BuildArch:	noarch
@@ -88,6 +90,8 @@ cp -a build/lib/qname.jar $RPM_BUILD_ROOT%{_javadir}/qname-%{version}.jar
 cp -a build/lib/wsdl4j.jar $RPM_BUILD_ROOT%{_javadir}/wsdl4j-%{version}.jar
 ln -s qname-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/qname.jar
 ln -s wsdl4j-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/wsdl4j.jar
+ln -s wsdl4j-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/jsr109.jar
+ln -s wsdl4j-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/jsr110.jar
 
 # javadoc
 install -d $RPM_BUILD_ROOT%{_javadocdir}/%{srcname}-%{version}

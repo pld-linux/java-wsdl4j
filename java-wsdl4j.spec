@@ -68,7 +68,7 @@ Javadoc for %{srcname}.
 Dokumentacja javadoc dla pakietu %{srcname}.
 
 %prep
-%setup -q
+%setup -q -n %{srcname}-%{version}
 
 %build
 required_jars="junit"

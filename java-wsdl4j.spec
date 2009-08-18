@@ -1,5 +1,13 @@
+# TODO:
+# - update to 1.6.2
+
 %bcond_without  javadoc         # don't build javadoc
-%bcond_with	java_sun	# use java-sun
+
+%if "%{pld_release}" == "ti"
+%bcond_without	java_sun	# build with gcj
+%else
+%bcond_with	java_sun	# build with java-sun
+%endif
 
 %include	/usr/lib/rpm/macros.java
 
@@ -8,7 +16,7 @@ Summary:	Web Services Description Language Toolkit for Java
 Summary(pl.UTF-8):	Język opisu usług WWW dla Javy
 Name:		java-wsdl4j
 Version:	1.5.1
-Release:	1
+Release:	2
 License:	IBM Common Public License
 Group:		Applications/Text
 ##cvs -d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/wsdl4j login
@@ -19,14 +27,18 @@ URL:		http://sourceforge.net/projects/wsdl4j/
 BuildRequires:	ant
 BuildRequires:	ant-junit
 %{!?with_java_sun:BuildRequires:	java-gcj-compat-devel}
-%{?with_java_sun:BuildRequires:	java-sun}
 BuildRequires:	java-junit
+%{?with_java_sun:BuildRequires:	java-sun}
 BuildRequires:	jpackage-utils
+BuildRequires:	jpackage-utils
+BuildRequires:	rpm >= 4.4.9-56
+BuildRequires:	rpm-javaprov
 BuildRequires:	rpm-javaprov
 BuildRequires:	rpmbuild(macros) >= 1.300
+BuildRequires:	rpmbuild(macros) >= 1.300
 Requires:	jaxp_parser_impl
-Obsoletes:	wsdl4j
 Provides:	wsdl4j
+Obsoletes:	wsdl4j
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 

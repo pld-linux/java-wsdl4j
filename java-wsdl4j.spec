@@ -30,11 +30,8 @@ BuildRequires:	ant-junit
 BuildRequires:	java-junit
 %{?with_java_sun:BuildRequires:	java-sun}
 BuildRequires:	jpackage-utils
-BuildRequires:	jpackage-utils
 BuildRequires:	rpm >= 4.4.9-56
 BuildRequires:	rpm-javaprov
-BuildRequires:	rpm-javaprov
-BuildRequires:	rpmbuild(macros) >= 1.300
 BuildRequires:	rpmbuild(macros) >= 1.300
 Requires:	jaxp_parser_impl
 Provides:	java(JSR109)

@@ -3,12 +3,6 @@
 
 %bcond_without  javadoc         # don't build javadoc
 
-%if "%{pld_release}" == "ti"
-%bcond_without	java_sun	# build with gcj
-%else
-%bcond_with	java_sun	# build with java-sun
-%endif
-
 %include	/usr/lib/rpm/macros.java
 
 %define		srcname	wsdl4j
@@ -26,17 +20,14 @@ Source0:	%{srcname}-%{version}-src.tar.gz
 URL:		http://sourceforge.net/projects/wsdl4j/
 BuildRequires:	ant
 BuildRequires:	ant-junit
-%{!?with_java_sun:BuildRequires:	java-gcj-compat-devel}
 BuildRequires:	java-junit
-%{?with_java_sun:BuildRequires:	java-sun}
+BuildRequires:	jdk
 BuildRequires:	jpackage-utils
-BuildRequires:	rpm >= 4.4.9-56
 BuildRequires:	rpm-javaprov
 BuildRequires:	rpmbuild(macros) >= 1.300
-Requires:	jaxp_parser_impl
+Requires:	java(jaxp_parser_impl)
 Provides:	java(JSR109)
 Provides:	java(JSR110)
-Provides:	wsdl4j
 Obsoletes:	wsdl4j
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)

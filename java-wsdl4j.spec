@@ -10,7 +10,7 @@ Summary:	Web Services Description Language Toolkit for Java
 Summary(pl.UTF-8):	Język opisu usług WWW dla Javy
 Name:		java-wsdl4j
 Version:	1.5.1
-Release:	2
+Release:	3
 License:	IBM Common Public License
 Group:		Applications/Text
 ##cvs -d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/wsdl4j login

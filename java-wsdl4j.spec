@@ -3,7 +3,6 @@
 
 %bcond_without  javadoc         # don't build javadoc
 
-%include	/usr/lib/rpm/macros.java
 
 %define		srcname	wsdl4j
 Summary:	Web Services Description Language Toolkit for Java
